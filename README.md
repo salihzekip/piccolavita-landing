@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piccolavita Tiny House</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b0b0b;
+color:#fff;
+}
+
+.hero{
+padding:90px 20px;
+text-align:center;
+background:linear-gradient(120deg,#111,#1a1a1a);
+}
+
+.hero h1{font-size:42px;margin:0}
+
+.price{
+color:#00ff9d;
+font-size:30px;
+margin-top:15px;
+font-weight:bold;
+}
+
+.btn{
+padding:14px 20px;
+border:none;
+border-radius:10px;
+margin:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.btn-orange{background:#ff4d00;color:#fff}
+.btn-green{background:#25D366;color:#fff}
+
+/* SECTIONS */
+.section{
+padding:60px 20px;
+max-width:1100px;
+margin:auto;
+}
+
+h2{text-align:center;margin-bottom:25px}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+/* CARD */
+.card{
+background:#1a1a1a;
+padding:20px;
+border-radius:15px;
+}
+
+/* GALLERY */
+.gitem{
+position:relative;
+border-radius:12px;
+overflow:hidden;
+cursor:pointer;
+}
+
+.gitem img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.overlay{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+background:rgba(0,0,0,0.6);
+padding:10px;
+font-size:14px;
+}
+
+/* FORM */
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+}
+
+.form-box{
+background:#141414;
+padding:20px;
+border-radius:15px;
+}
+
+/* LIGHTBOX */
+#lightbox{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+#lightbox img{
+max-width:90%;
+max-height:80%;
+border-radius:10px;
+}
+
+#lightbox p{
+color:#fff;
+margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<h1>Tiny House Çözümleri</h1>
+<p>Premium üretim • Anahtar teslim</p>
+
+<div class="price">1.200.000 TL’den Başlayan Fiyatlar</div>
+
+<button class="btn btn-orange" onclick="document.getElementById('lead').scrollIntoView()">
+Hemen Teklif Al
+</button>
+
+<button class="btn btn-green" onclick="window.open('https://wa.me/905324521522')">
+WhatsApp
+</button>
+</div>
+
+<!-- MODELLER -->
+<div class="section">
+<h2>Modeller</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>8m 1+1</h3>
+<p>Kompakt çözüm</p>
+<b>1.200.000 TL</b>
+</div>
+
+<div class="card">
+<h3>10m 3+1</h3>
+<p>Geniş aile kullanımı</p>
+<b>1.600.000 TL</b>
+</div>
+
+<div class="card">
+<h3>Özel Tasarım</h3>
+<p>Size özel üretim</p>
+<b>Teklif Alın</b>
+</div>
+
+</div>
+</div>
+
+<!-- GALERİ -->
+<div class="section">
+<h2>Gerçek Teslim Projelerimiz</h2>
+
+<div class="grid">
+
+<div class="gitem" data-title="Sedat Mavi - Uşak">
+<img src="https://www.piccolavita.com/projeler/sedatmavi.jpg">
+<div class="overlay">Sedat Mavi • Uşak</div>
+</div>
+
+<div class="gitem" data-title="Metin Penbe - İzmir">
+<img src="https://www.piccolavita.com/projeler/metinpenbe.jpg">
+<div class="overlay">Metin Penbe • İzmir</div>
+</div>
+
+<div class="gitem" data-title="Gökmen - Honaz">
+<img src="https://www.piccolavita.com/projeler/gokmen1.jpg">
+<div class="overlay">Gökmen • Honaz</div>
+</div>
+
+<div class="gitem" data-title="Oskay Projesi">
+<img src="https://www.piccolavita.com/projeler/oskay-(4).jpg">
+<div class="overlay">Oskay Projesi</div>
+</div>
+
+</div>
+</div>
+
+<!-- LEAD FORM (KRİTİK EKLENDİ) -->
+<div class="section" id="lead">
+
+<h2>2 Dakikada Teklif Al</h2>
+
+<div class="form-box">
+
+<input id="name" placeholder="Ad Soyad">
+<input id="phone" placeholder="Telefon">
+<input id="metre" placeholder="Kaç metre?">
+<input id="kisi" placeholder="Kaç kişi?">
+<input id="budget" placeholder="Bütçe">
+
+<button class="btn btn-orange" onclick="sendLead()">
+Teklif Gönder
+</button>
+
+</div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+<img id="lightboxImg">
+<p id="lightboxText"></p>
+</div>
+
+<script>
+
+/* LEAD -> WHATSAPP */
+function sendLead(){
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let metre=document.getElementById("metre").value;
+let kisi=document.getElementById("kisi").value;
+let budget=document.getElementById("budget").value;
+
+let msg =
+`Merhaba, Tiny House bilgi almak istiyorum.%0A
+Ad: ${name}%0A
+Telefon: ${phone}%0A
+Metre: ${metre}%0A
+Kişi: ${kisi}%0A
+Bütçe: ${budget}`;
+
+window.open("https://wa.me/905324521522?text="+msg,"_blank");
+}
+
+/* LIGHTBOX */
+const items=document.querySelectorAll(".gitem");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightboxImg");
+const lightboxText=document.getElementById("lightboxText");
+
+items.forEach(el=>{
+el.addEventListener("click",()=>{
+lightbox.style.display="flex";
+lightboxImg.src=el.querySelector("img").src;
+lightboxText.innerText=el.dataset.title;
+});
+});
+
+lightbox.addEventListener("click",()=>{
+lightbox.style.display="none";
+});
+
+</script>
+
+</body>
+</html>
